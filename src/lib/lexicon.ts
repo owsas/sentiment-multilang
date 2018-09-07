@@ -4,14 +4,14 @@
  * about the language
  */
 
-const emoji = require('./emoji.json');
+const emoji = require('../../langs/emoji.json');
 
-const en = require('./en.json');
-const es = require('./es.json');
-const fr = require('./fr.json');
-const it = require('./it.json');
-const de = require('./de.json');
-const nl = require('./nl.json');
+const en = require('../../langs/en.json');
+const es = require('../../langs/es.json');
+const fr = require('../../langs/fr.json');
+const it = require('../../langs/it.json');
+const de = require('../../langs/de.json');
+const nl = require('../../langs/nl.json');
 
 const data = {
 	langs: { en: true, fr: true, it: true, es: true, nl: true, de: true },

@@ -6,7 +6,7 @@ import * as program from 'commander';
 import * as path from 'path';
 import * as fs from 'fs';
 import { clean } from '../lib/clean';
-const { version } = require('../package.json');
+const { version } = require('../../package.json');
 
 program.version(version)
   .option('-i --input [value]')

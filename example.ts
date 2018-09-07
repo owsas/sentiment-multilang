@@ -26,10 +26,10 @@ console.dir(r7);
 var r8 = sentiment('I gatti sono totalmente stupendi!','it');
 console.dir(r8);
 
-var r9 = sentiment('The sgdfa iowuhd ruuqpos!','yug');
+var r9 = (sentiment as any)('The sgdfa iowuhd ruuqpos!','yug');
 console.dir(r9);
 
-var r10 = sentiment('','6fe');
+var r10 = (sentiment as any)('','6fe');
 console.dir(r10);
 
 var r11 = sentiment('Esto está muy muy bueno!','es');

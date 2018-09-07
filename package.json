@@ -13,23 +13,11 @@
     "multilanguage"
   ],
   "author": "davidemiceli",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/davidemiceli/sentiment-multilang.git"
-  },
-  "files": [
-    "index.js",
-    "example.js",
-    "lib"
-  ],
-  "bugs": {
-    "url": "https://github.com/davidemiceli/sentiment-multilang/issues"
-  },
   "maintainers": [
-    "davidemiceli"
+    "jcguarinpenaranda"
   ],
-  "homepage": "https://github.com/davidemiceli/sentiment-multilang#readme",
   "directories": {
+    "lib": "lib",
     "test": "test"
   },
   "scripts": {
@@ -62,5 +50,13 @@
       "json",
       "node"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/owsas/sentiment-multilang.git"
+  },
+  "bugs": {
+    "url": "https://github.com/owsas/sentiment-multilang/issues"
+  },
+  "homepage": "https://github.com/owsas/sentiment-multilang#readme"
 }

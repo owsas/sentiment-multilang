@@ -4,6 +4,8 @@
  * about the language
  */
 
+const emoji = require('./emoji.json');
+
 const en = require('./en.json');
 const es = require('./es.json');
 const fr = require('./fr.json');
@@ -12,7 +14,7 @@ const de = require('./de.json');
 const nl = require('./nl.json');
 
 const data = {
-	langs: {"en": true, "fr": true, "it": true, "es": true},
+	langs: { en: true, fr: true, it: true, es: true, nl: true, de: true },
 	negations: {
 		en: {"without": 1,"not":1,"no":1,"minus":1},
 		es: {"sin": 1, "nada": 1, "no":1,"menos":1},
@@ -22,6 +24,7 @@ const data = {
 		nl: {"nee": 1, "niet": 1, "geen": 1}
 	},
 	truncated: {"en": false, "it": true, "fr": false, "es": false},
+	emoji,
 	en,
 	es,
 	fr,

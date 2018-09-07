@@ -13,7 +13,7 @@ It supports the following languages: English, French, Spanish, and Italian. For 
 ## Usage
 ```javascript
 // Require the sentiment-multilang module
-var { sentiment } = require('sentiment-multilang');
+var { sentiment } = require('@owsas/sentiment-multilang');
 
 // Use the module to get sentiment from texts.
 var r1 = sentiment('Cats are stupid.','en');
@@ -28,6 +28,12 @@ console.dir(r3);        // Vote: 'negative'
 var r4 = sentiment('I gatti sono totalmente stupendi!','it');
 console.dir(r4);        // Vote: 'positive'
 ```
+
+## Improvements
+* All languages were moved to `langs` directory in separate `.json` files
+* Code was moved to Typescript, and users can now see hints in their code
+* Tests were moved to `jest`
+* Testing with `travis`
 
 ## Credits
 * Cloned repo: https://github.com/davidemiceli/sentiment-multilang 

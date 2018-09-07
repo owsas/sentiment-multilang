@@ -11,7 +11,7 @@ It supports the following languages: English, French, Spanish, and Italian. For 
 ## Usage
 ```javascript
 // Require the sentiment-multilang module
-var sentiment = require('sentiment-multilang');
+var { sentiment } = require('sentiment-multilang');
 
 // Use the module to get sentiment from texts.
 var r1 = sentiment('Cats are stupid.','en');
@@ -26,6 +26,12 @@ console.dir(r3);        // Vote: 'negative'
 var r4 = sentiment('I gatti sono totalmente stupendi!','it');
 console.dir(r4);        // Vote: 'positive'
 ```
+
+## Credits
+* Cloned repo: https://github.com/davidemiceli/sentiment-multilang 
+* Emojis from: https://github.com/nicolasbonnici/node-sentiment/blob/master/lib/AFINN.js
+* Dutch from: https://github.com/vdcrea/node-sentiment
+* German from: https://github.com/vdcrea/node-sentiment
 
 ## Test
 ```bash

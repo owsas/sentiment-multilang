@@ -44,6 +44,7 @@
     "typescript": "^3.0.3"
   },
   "dependencies": {
+    "latinize": "^0.4.0",
     "stemmer": "^1.0.3"
   },
   "jest": {

@@ -32,7 +32,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test"
+    "test": "jest"
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
@@ -43,5 +43,21 @@
     "ts-node": "^7.0.1",
     "typescript": "^3.0.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "stemmer": "^1.0.3"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
 }

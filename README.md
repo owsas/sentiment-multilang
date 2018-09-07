@@ -6,7 +6,9 @@ Sentiment is a Node.js module that uses the [AFINN-111](http://www2.imm.dtu.dk/p
 It supports the following languages: English, French, Spanish, and Italian. For languages other than english, it uses a locale transposition of AFINN-111 wordlist. The wordlist can be extended adding words too.
 
 ## Installation
-`npm install sentiment-multilang`
+`npm install @owsas/sentiment-multilang`
+
+![](https://travis-ci.org/owsas/sentiment-multilang.svg?branch=master)
 
 ## Usage
 ```javascript

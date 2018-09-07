@@ -1,9 +1,10 @@
 {
-  "name": "sentiment-multilang",
+  "name": "@owsas/sentiment-multilang",
   "version": "0.0.2",
   "description": "Multilanguage AFINN-based sentiment analysis for Node.js",
   "license": "MIT",
-  "main": "index.js",
+  "main": "out/index.js",
+  "types": "out/index.d.ts",
   "keywords": [
     "sentiment",
     "analysis",
@@ -32,7 +33,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc"
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",

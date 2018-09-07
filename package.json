@@ -1,9 +1,10 @@
 {
-  "name": "sentiment-multilang",
+  "name": "@owsas/sentiment-multilang",
   "version": "0.0.2",
   "description": "Multilanguage AFINN-based sentiment analysis for Node.js",
   "license": "MIT",
-  "main": "index.js",
+  "main": "out/index.js",
+  "types": "out/index.d.ts",
   "keywords": [
     "sentiment",
     "analysis",
@@ -12,27 +13,17 @@
     "multilanguage"
   ],
   "author": "davidemiceli",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/davidemiceli/sentiment-multilang.git"
-  },
-  "files": [
-    "index.js",
-    "example.js",
-    "lib"
-  ],
-  "bugs": {
-    "url": "https://github.com/davidemiceli/sentiment-multilang/issues"
-  },
   "maintainers": [
-    "davidemiceli"
+    "jcguarinpenaranda"
   ],
-  "homepage": "https://github.com/davidemiceli/sentiment-multilang#readme",
   "directories": {
+    "lib": "lib",
     "test": "test"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
@@ -60,5 +51,13 @@
       "json",
       "node"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/owsas/sentiment-multilang.git"
+  },
+  "bugs": {
+    "url": "https://github.com/owsas/sentiment-multilang/issues"
+  },
+  "homepage": "https://github.com/owsas/sentiment-multilang#readme"
 }

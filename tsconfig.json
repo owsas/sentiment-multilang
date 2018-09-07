@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
     "declaration": true,
     "outDir": "out",
+    "noUnusedLocals": true,
     "lib": [
       "es6"
-    ]
+    ],
+    "rootDir": "src"
   }
 }

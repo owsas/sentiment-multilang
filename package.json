@@ -1,6 +1,6 @@
 {
   "name": "@owsas/sentiment-multilang",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Multilanguage AFINN-based sentiment analysis for Node.js",
   "license": "MIT",
   "main": "out/index.js",

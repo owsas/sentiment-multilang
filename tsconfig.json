@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "out",
+    "lib": [
+      "es6"
+    ]
+  }
+}

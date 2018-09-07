@@ -1,5 +1,5 @@
 // Require the sentiment module
-var sentiment = require('./index');
+import { sentiment } from "./index";
  
 // List of examples:
 var r1 = sentiment('Cats are stupid.', 'en');
@@ -31,3 +31,6 @@ console.dir(r9);
 
 var r10 = sentiment('','6fe');
 console.dir(r10);
+
+var r11 = sentiment('Esto está muy muy bueno!','es');
+console.dir(r11);

@@ -1,1 +1,11 @@
 language: node_js
+node_js:
+  - "8"
+
+install:
+  - npm install
+  - npm run build
+
+cache:
+  directories:
+    - "node_modules"

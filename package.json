@@ -16,10 +16,6 @@
   "maintainers": [
     "jcguarinpenaranda"
   ],
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  },
   "scripts": {
     "test": "jest",
     "build": "tsc",

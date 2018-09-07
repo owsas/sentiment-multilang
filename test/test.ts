@@ -3,9 +3,6 @@
  * Then type the command on the parent folder: mocha test
  */
 
-// Require assert mocha
-var assert = require('assert');
-
 // Require the sentiment module
 import { sentiment } from "..";
 

@@ -35,8 +35,11 @@
     "test": "mocha test"
   },
   "devDependencies": {
+    "@types/jest": "^23.3.1",
     "@types/node": "^10.9.4",
     "commander": "^2.18.0",
+    "jest": "^23.5.0",
+    "ts-jest": "^23.1.4",
     "ts-node": "^7.0.1",
     "typescript": "^3.0.3"
   },

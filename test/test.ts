@@ -40,7 +40,7 @@ describe('Wrong language', function () {
 });
 
 describe('Emoji', function() {
-  test('should detect the usage of emojis', function () {
+  test('It should detect the usage of emojis', function () {
     expect(sentiment('Te amo! 😍', 'es').vote).toEqual('positive');
   });
 });

@@ -23,13 +23,13 @@ describe('Italian', function () {
   });
 });
 
-describe.only('Spanish', function () {
+describe('Spanish', function () {
   test('It should return positive or negative', function () {
     expect(sentiment('Los gatos son estúpidos.', 'es').vote).toEqual('negative');
     expect(sentiment('Los gatos son totalmente increíbles!', 'es').vote).toEqual('positive');
   });
 
-  test.only('It should not care about accents', function () {
+  test('It should not care about accents', function () {
     expect(sentiment('Son absolutamente increibles!', 'es').vote).toEqual('positive');
   });
 });
@@ -39,5 +39,11 @@ describe('Wrong language', function () {
     expect(sentiment('Seems somebody had a good meal! #lion #safari #cats #wildlife #Africa #adventure #offroad https://t.co/6cX7hAlrYY', 'en').vote).toEqual('positive');
     expect((sentiment as any)('Seems somebody had a good meal! #lion #safari #cats #wildlife #Africa #adventure #offroad https://t.co/6cX7hAlrYY', '8g8u').vote).toEqual('neutral');
     expect(sentiment('Seems somebody had a good meal! #lion #safari #cats #wildlife #Africa #adventure #offroad https://t.co/6cX7hAlrYY', 'it').vote).toEqual('neutral');
+  });
+});
+
+describe('Emoji', function() {
+  test('should detect the usage of emojis', function () {
+    expect(sentiment('Te amo! 😍', 'es').vote).toEqual('positive');
   });
 });

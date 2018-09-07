@@ -3,10 +3,19 @@
 */
 
 // Dependencies
+import * as latinize from 'latinize';
+import * as stemmer from 'stemmer';
+
 import lexicon from './lib/lexicon';
 
+/**
+ * Types of sentiment votes
+ */
 export type ISentimentVote = 'neutral' | 'positive' | 'negative';
 
+/**
+ * Supported languages
+ */
 export type ISentimentSupportedLang = 'en' | 'es' | 'fr' | 'it' | 'de' | 'nl' | 'unknown';
 
 export interface ISentimentResult {
@@ -20,16 +29,35 @@ export interface ISentimentResult {
   language: string,
 }
 
-export function tokenize(input) {
+/**
+ * Tokenizes a string into an array of strings
+ * @param input
+ */
+export function tokenize(input: string): string[] {
   return input
     .toLowerCase()
-    .replace(/^\s+|^0-9+|[^a-z-úñäâàáéèëêïîíìöôùüûœç\- ]+/g, '')
-    .replace('/ {2,}/', ' ')
+    // .replace(/^\s+|^0-9+|[^a-z-úñäâàáéèëêïîíìöôùüûœç\- ]+/g, '')
+    .replace(/\r?\n|\r/g, ' ')  // line breaks changed to space https://stackoverflow.com/a/10805292
+    .replace(/n\'t/g, ' not')   // n't changed to not
+    .replace(/'s/g, ' is')      // 's changed to is
+    .replace(/['’]/g, ' ')      // apos changed to space
+    .replace(/[.,\/#!$%\^&\*;:{}=_`\"~()]/g, '') // remove punctuation
+    .replace(/\s{2,}/g, ' ')    // remove extra spaces https://stackoverflow.com/a/4328722
     .split(' ');
 };
 
-// Performs sentiment analysis on the provided input 'phrase'
-export function sentiment(phrase: string, lang: ISentimentSupportedLang, callback?: (err: any, result: ISentimentResult) => void) {
+
+/**
+ * Performs sentiment analysis on the provided input 'phrase'
+ * @param phrase 
+ * @param lang 
+ * @param callback 
+ */
+export function sentiment(
+  phrase: string, 
+  lang: ISentimentSupportedLang, 
+  callback?: (err: any, result: ISentimentResult) => void
+): ISentimentResult {
   // Parse arguments
   if (typeof phrase === 'undefined') phrase = '';
   if ((typeof (lang) === 'undefined') || !lexicon["langs"][lang]) lang = 'unknown';
@@ -48,14 +76,28 @@ export function sentiment(phrase: string, lang: ISentimentSupportedLang, callbac
     while (len--) {
       // var prevobj = (len > 0) ? String(tokens[len-1]): "";
       var negation = (lexicon["negations"][lang] && lexicon["negations"][lang][tokens[len - 1]]) ? -1 : 1;
-      var obj = lexicon["truncated"][lang] ? tokens[len].replace(/[aeiouúäâàáéèëêïîíìöôùüû]$/, "") : String(tokens[len]);
-      var item = Number(lexicon[lang][obj]);
-      if (!lexicon[lang][obj]) continue;
+      var stringToken = lexicon["truncated"][lang] ? tokens[len].replace(/[aeiouúäâàáéèëêïîíìöôùüû]$/, "") : String(tokens[len]);
+      let punctuation = 0;
+      // Extract the value using the input word, it's stemmed or it's latinized (no accents) version 
+      const tokenValue = lexicon[lang] && (lexicon[lang][stringToken] || lexicon[lang][stemmer(stringToken)] || lexicon[lang][latinize(stringToken)]);
 
-      words.push(obj);
-      if (item > 0) positive.push(obj);
-      if (item < 0) negative.push(obj);
-      score += item * negation;
+      if (tokenValue === undefined) {
+        // Search on the emojis data
+        if (!lexicon['emoji'][stringToken]) {
+          continue; // continue the while loop with the next iteration
+        }
+
+        // It's an emoji
+        punctuation = Number(lexicon['emoji'][stringToken]);
+      } else {
+        // It's a word
+        punctuation = tokenValue;
+      }
+
+      words.push(stringToken);
+      if (punctuation > 0) positive.push(stringToken);
+      if (punctuation < 0) negative.push(stringToken);
+      score += punctuation * negation;
     }
   }
 

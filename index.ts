@@ -3,9 +3,11 @@
 */
 
 // Dependencies
-import afinn from './lib/AFINN';
+import lexicon from './lib/lexicon';
 
 export type ISentimentVote = 'neutral' | 'positive' | 'negative';
+
+export type ISentimentSupportedLang = 'en' | 'es' | 'fr' | 'it' | 'de' | 'nl' | 'unknown';
 
 export interface ISentimentResult {
   score: number,
@@ -27,10 +29,10 @@ export function tokenize(input) {
 };
 
 // Performs sentiment analysis on the provided input 'phrase'
-export function sentiment(phrase: string, lang: string, callback?: (result: ISentimentResult) => void) {
+export function sentiment(phrase: string, lang: ISentimentSupportedLang, callback?: (err: any, result: ISentimentResult) => void) {
   // Parse arguments
   if (typeof phrase === 'undefined') phrase = '';
-  if ((typeof (lang) === 'undefined') || !afinn["langs"][lang]) lang = 'unknown';
+  if ((typeof (lang) === 'undefined') || !lexicon["langs"][lang]) lang = 'unknown';
   if (typeof callback === 'undefined') callback = null;
 
   // Storage objects
@@ -45,10 +47,10 @@ export function sentiment(phrase: string, lang: string, callback?: (result: ISen
   if (lang !== 'unknown') {
     while (len--) {
       // var prevobj = (len > 0) ? String(tokens[len-1]): "";
-      var negation = (afinn["negations"][lang] && afinn["negations"][lang][tokens[len - 1]]) ? -1 : 1;
-      var obj = afinn["truncated"][lang] ? tokens[len].replace(/[aeiouúäâàáéèëêïîíìöôùüû]$/, "") : String(tokens[len]);
-      var item = Number(afinn[lang][obj]);
-      if (!afinn[lang][obj]) continue;
+      var negation = (lexicon["negations"][lang] && lexicon["negations"][lang][tokens[len - 1]]) ? -1 : 1;
+      var obj = lexicon["truncated"][lang] ? tokens[len].replace(/[aeiouúäâàáéèëêïîíìöôùüû]$/, "") : String(tokens[len]);
+      var item = Number(lexicon[lang][obj]);
+      if (!lexicon[lang][obj]) continue;
 
       words.push(obj);
       if (item > 0) positive.push(obj);
@@ -74,5 +76,5 @@ export function sentiment(phrase: string, lang: string, callback?: (result: ISen
   else if (result.score < 0) { result.vote = 'negative'; }
 
   if (!callback) return result;
-  callback(result);
+  callback(null, result);
 };

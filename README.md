@@ -43,5 +43,5 @@ console.dir(r4);        // Vote: 'positive'
 
 ## Test
 ```bash
-mocha test
+npm t # runs jest
 ```

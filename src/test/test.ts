@@ -5,11 +5,14 @@
 
 // Require the sentiment module
 import { sentiment } from "..";
+import { clean } from '../lib/clean';
 
 describe('English', function () {
   test('It should return positive or negative', function () {
     expect(sentiment('Cats are stupid.', 'en').vote).toEqual('negative');
     expect(sentiment('Cats are totally amazing!', 'en').vote).toEqual('positive');
+    expect(sentiment('I had the most wonderful stay', 'en').vote).toEqual('positive');
+    expect(sentiment('I’m really disappointed with the battery life of my device', 'en').vote).toEqual('negative');
   });
 });
 
@@ -42,5 +45,17 @@ describe('Wrong language', function () {
 describe('Emoji', function() {
   test('It should detect the usage of emojis', function () {
     expect(sentiment('Te amo! 😍', 'es').vote).toEqual('positive');
+  });
+});
+
+describe('Cleaner', function() {
+  test('It should clean lang file', function () {
+    const output = clean({
+      "embrace": 1,
+      "abandon": -2,
+      "Abandon": -2
+    })
+    expect(Object.keys(output)[0]).toEqual('abandon');
+    expect(Object.keys(output).length).toEqual(2);
   });
 });

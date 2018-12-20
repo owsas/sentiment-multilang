@@ -16,7 +16,7 @@ export type ISentimentVote = 'neutral' | 'positive' | 'negative';
 /**
  * Supported languages
  */
-export type ISentimentSupportedLang = 'en' | 'es' | 'fr' | 'it' | 'de' | 'nl' | 'unknown';
+export type ISentimentSupportedLang = 'en' | 'es' | 'fr' | 'it' | 'de' | 'nl' | 'unknown';
 
 export interface ISentimentResult {
   score: number,
@@ -54,8 +54,8 @@ export function tokenize(input: string): string[] {
  * @param callback 
  */
 export function sentiment(
-  phrase: string, 
-  lang: ISentimentSupportedLang, 
+  phrase: string,
+  lang: ISentimentSupportedLang,
   callback?: (err: any, result: ISentimentResult) => void
 ): ISentimentResult {
   // Parse arguments
@@ -64,22 +64,22 @@ export function sentiment(
   if (typeof callback === 'undefined') callback = null;
 
   // Storage objects
-  var tokens = tokenize(phrase),
-    score = 0,
+  const tokens = tokenize(phrase),
     words = [],
     positive = [],
     negative = [];
+  let score = 0;
 
   // Iterate over tokens if language is knowed
-  var len = tokens.length;
+  let len = tokens.length;
   if (lang !== 'unknown') {
     while (len--) {
       // var prevobj = (len > 0) ? String(tokens[len-1]): "";
-      var negation = (lexicon["negations"][lang] && lexicon["negations"][lang][tokens[len - 1]]) ? -1 : 1;
-      var stringToken = lexicon["truncated"][lang] ? tokens[len].replace(/[aeiouúäâàáéèëêïîíìöôùüû]$/, "") : String(tokens[len]);
+      const negation = (lexicon["negations"][lang] && lexicon["negations"][lang][tokens[len - 1]]) ? -1 : 1;
+      const stringToken = lexicon["truncated"][lang] ? tokens[len].replace(/[aeiouúäâàáéèëêïîíìöôùüû]$/, "") : String(tokens[len]);
       let punctuation = 0;
       // Extract the value using the input word, it's stemmed or it's latinized (no accents) version 
-      const tokenValue = lexicon[lang] && (lexicon[lang][stringToken] || lexicon[lang][stemmer(stringToken)] || lexicon[lang][latinize(stringToken)]);
+      const tokenValue = lexicon[lang] && (lexicon[lang][stringToken] || lexicon[lang][stemmer(stringToken)] || lexicon[lang][latinize(stringToken)]);
 
       if (tokenValue === undefined) {
         // Search on the emojis data
@@ -102,7 +102,7 @@ export function sentiment(
   }
 
   // Handle optional async interface
-  var result: ISentimentResult = {
+  const result: ISentimentResult = {
     score: score,
     comparative: score / tokens.length,
     vote: 'neutral',
@@ -114,9 +114,15 @@ export function sentiment(
   };
 
   // Classify text as positive, negative or neutral.
-  if (result.score > 0) { result.vote = 'positive'; }
-  else if (result.score < 0) { result.vote = 'negative'; }
+  if (result.score > 0) {
+    result.vote = 'positive';
+  } else if (result.score < 0) {
+    result.vote = 'negative';
+  }
 
-  if (!callback) return result;
-  callback(null, result);
+  if (!callback) {
+    return result;
+  } else {
+    callback(null, result);
+  }   
 };

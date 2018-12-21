@@ -1,10 +1,18 @@
 # sentiment-multilang
-### Multilanguage AFINN-based sentiment analysis for Node.js
+## Multilanguage AFINN-based sentiment analysis for Node.js
 
 Sentiment is a Node.js module that uses the [AFINN-111](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010) wordlist to perform [sentiment analysis](http://en.wikipedia.org/wiki/Sentiment_analysis) on arbitrary blocks of input text.
 
-It supports the following languages: English, French, Spanish, and Italian. For languages other than english, it uses a locale transposition of AFINN-111 wordlist. The wordlist can be extended adding words too.
+It supports the following languages: English, French, Spanish, German, Dutch and Italian. For languages other than english, it uses a locale transposition of AFINN-111 wordlist. The wordlist can be extended adding words too.  
 
+Emojis are also supported: 
+```js 
+describe('Emoji', function() {
+  test('It should detect the usage of emojis', function () {
+    expect(sentiment('Te amo! 😍', 'es').vote).toEqual('positive');
+  });
+});
+```
 ## Installation
 `npm install @owsas/sentiment-multilang`
 
@@ -13,20 +21,9 @@ It supports the following languages: English, French, Spanish, and Italian. For 
 ## Usage
 ```javascript
 // Require the sentiment-multilang module
-var { sentiment } = require('@owsas/sentiment-multilang');
-
-// Use the module to get sentiment from texts.
-var r1 = sentiment('Cats are stupid.','en');
-console.dir(r1);        // Vote: 'negative'
-
-var r2 = sentiment('Cats are totally amazing!','en');
-console.dir(r2);        // Vote: 'positive'
-
-var r3 = sentiment('I gatti sono stupidi.','it');
-console.dir(r3);        // Vote: 'negative'
-
-var r4 = sentiment('I gatti sono totalmente stupendi!','it');
-console.dir(r4);        // Vote: 'positive'
+const { sentiment } = require('@owsas/sentiment-multilang');
+// Get the sentiment from a text in a supported language
+const result = sentiment('I had the most wonderful stay', 'en');  // result.vote = 'positive'
 ```
 
 ## Improvements

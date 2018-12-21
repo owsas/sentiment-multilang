@@ -22,13 +22,15 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.1",
-    "@types/node": "^10.9.4",
-    "commander": "^2.18.0",
-    "jest": "^23.5.0",
-    "ts-jest": "^23.1.4",
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.18",
+    "commander": "^2.19.0",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
-    "typescript": "^3.0.3"
+    "typescript": "^3.2.2",
+    "@types/latinize": "^0.2.15",
+    "@types/stemmer": "^1.0.1"
   },
   "dependencies": {
     "latinize": "^0.4.0",
